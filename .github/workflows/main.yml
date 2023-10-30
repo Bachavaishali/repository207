@@ -6,9 +6,7 @@ on:
       - main
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -25,7 +23,7 @@ jobs:
     - name: Docker Push
       run: docker push vaishali2072/deploy_image_to_dockerhub:${{ github.sha }}
 
-     - name: Harness Deploy Action
+    - name: Harness Deploy Action
       id: deploy
       uses: fac/harness-deploy-action@v1.0
       with:
