@@ -24,3 +24,13 @@ jobs:
       
     - name: Docker Push
       run: docker push vaishali2072/deploy_image_to_dockerhub:${{ github.sha }}
+
+     - name: Harness Deploy Action
+      id: deploy
+      uses: fac/harness-deploy-action@v1.0
+      with:
+        webhookUrl: ${{secrets.HARNESS_WEBHOOK_URL }}
+        application: default_project
+        services: deployment
+        version: ${{ github.sha }}
+        harnessApiKey: ${{ secrets.HARNESS_API_KEY }}
